@@ -2,7 +2,7 @@
 
 set -eu
 
-STACK_NAME='GenerativeAiUseCasesStack'
+STACK_NAME='GenerativeAiUseCasesStack-summit2024'
 
 function extract_value {
     echo $1 | jq -r ".Stacks[0].Outputs[] | select(.OutputKey==\"$2\") | .OutputValue"

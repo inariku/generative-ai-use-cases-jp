@@ -56,7 +56,7 @@ npx -w packages/cdk cdk bootstrap
 npm run cdk:deploy
 
 # デプロイした CloudFront の url を取得
-weburl=`aws cloudformation describe-stacks --stack-name GenerativeAiUseCasesStack --output json | jq -r ".Stacks[0].Outputs[] | select(.OutputKey==\"WebUrl\") | .OutputValue"`
+weburl=`aws cloudformation describe-stacks --stack-name GenerativeAiUseCasesStack-summit2024 --output json | jq -r ".Stacks[0].Outputs[] | select(.OutputKey==\"WebUrl\") | .OutputValue"`
 
 echo "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
 echo "Welcome to GenU: $weburl"

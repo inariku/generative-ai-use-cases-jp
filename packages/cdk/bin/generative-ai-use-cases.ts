@@ -145,7 +145,7 @@ const guardrail = guardrailEnabled
 
 const generativeAiUseCasesStack = new GenerativeAiUseCasesStack(
   app,
-  'GenerativeAiUseCasesStack',
+  'GenerativeAiUseCasesStack-summit2024',
   {
     env: {
       account: process.env.CDK_DEFAULT_ACCOUNT,
