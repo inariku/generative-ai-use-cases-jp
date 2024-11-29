@@ -374,6 +374,9 @@ PromptFlow チャットユースケースでは、作成済みの Prompt Flow �
 "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
 "eu.anthropic.claude-3-sonnet-20240229-v1:0",
 "eu.anthropic.claude-3-haiku-20240307-v1:0",
+"apac.anthropic.claude-3-haiku-20240307-v1:0",
+"apac.anthropic.claude-3-sonnet-20240229-v1:0",
+"apac.anthropic.claude-3-5-sonnet-20240620-v1:0",
 "us.meta.llama3-2-90b-instruct-v1:0",
 "us.meta.llama3-2-11b-instruct-v1:0",
 ```
@@ -395,9 +398,34 @@ PromptFlow チャットユースケースでは、作成済みの Prompt Flow �
     "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
     "eu.anthropic.claude-3-sonnet-20240229-v1:0",
     "eu.anthropic.claude-3-haiku-20240307-v1:0",
+    "apac.anthropic.claude-3-haiku-20240307-v1:0",
+    "apac.anthropic.claude-3-sonnet-20240229-v1:0",
+    "apac.anthropic.claude-3-5-sonnet-20240620-v1:0",
     "us.meta.llama3-2-90b-instruct-v1:0",
     "us.meta.llama3-2-11b-instruct-v1:0",
   ]
+```
+
+### プロンプト最適化ツールの有効化
+
+プロンプト最適化ツールは入力したプロンプトを指定したモデルに最適な形に変換します。
+プロンプト最適化ツールを直接有効化するオプションはありませんが、`cdk.json` の設定が以下の 2 点を満たす必要があります。
+- `modelRegion`: Amazon Bedrock の Prompt optimization がサポートされているリージョンであること
+- `modelIds`: Amazon Bedrock の Prompt optimization がサポートされているモデルが 1 つ以上指定されていること
+
+Prompt optimization のサポート状況は [こちら](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-optimize.html) をご参照ください。
+
+## ユースケースビルダーの設定
+
+ユースケースビルダーはデフォルトで有効化されており、デプロイ後画面上に表示される「ビルダーモード」という項目から利用できます。ユースケースビルダーを無効化する場合は、context の `useCaseBuilderEnabled` に `false` を指定します。(デフォルトは `true`)
+
+**[packages/cdk/cdk.json](/packages/cdk/cdk.json) を編集**
+```
+{
+  "context": {
+    "useCaseBuilderEnabled": false
+  }
+}
 ```
 
 ## Amazon Bedrock のモデルを変更する
@@ -412,10 +440,13 @@ PromptFlow チャットユースケースでは、作成済みの Prompt Flow �
 
 ```
 "anthropic.claude-3-5-sonnet-20241022-v2:0",
+"anthropic.claude-3-5-haiku-20241022-v1:0",
 "anthropic.claude-3-5-sonnet-20240620-v1:0",
 "anthropic.claude-3-opus-20240229-v1:0",
 "anthropic.claude-3-sonnet-20240229-v1:0",
 "anthropic.claude-3-haiku-20240307-v1:0",
+"us.anthropic.claude-3-5-sonnet-20241022-v2:0",
+"us.anthropic.claude-3-5-haiku-20241022-v1:0",
 "us.anthropic.claude-3-5-sonnet-20240620-v1:0",
 "us.anthropic.claude-3-opus-20240229-v1:0",
 "us.anthropic.claude-3-sonnet-20240229-v1:0",
@@ -423,6 +454,9 @@ PromptFlow チャットユースケースでは、作成済みの Prompt Flow �
 "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
 "eu.anthropic.claude-3-sonnet-20240229-v1:0",
 "eu.anthropic.claude-3-haiku-20240307-v1:0",
+"apac.anthropic.claude-3-haiku-20240307-v1:0",
+"apac.anthropic.claude-3-sonnet-20240229-v1:0",
+"apac.anthropic.claude-3-5-sonnet-20240620-v1:0",
 "amazon.titan-text-premier-v1:0",
 "us.meta.llama3-2-90b-instruct-v1:0",
 "us.meta.llama3-2-11b-instruct-v1:0",
@@ -441,8 +475,6 @@ PromptFlow チャットユースケースでは、作成済みの Prompt Flow �
 "anthropic.claude-v2:1",
 "anthropic.claude-v2",
 "anthropic.claude-instant-v1",
-"meta.llama2-70b-chat-v1",
-"meta.llama2-13b-chat-v1",
 "mistral.mixtral-8x7b-instruct-v0:1",
 "mistral.mistral-7b-instruct-v0:2"
 ```
@@ -489,6 +521,7 @@ PromptFlow チャットユースケースでは、作成済みの Prompt Flow �
   "modelRegion": "us-west-2",
   "modelIds": [
     "anthropic.claude-3-5-sonnet-20241022-v2:0",
+    "anthropic.claude-3-5-haiku-20241022-v1:0",
     "anthropic.claude-3-5-sonnet-20240620-v1:0",
     "anthropic.claude-3-opus-20240229-v1:0",
     "anthropic.claude-3-sonnet-20240229-v1:0",
@@ -512,6 +545,8 @@ PromptFlow チャットユースケースでは、作成済みの Prompt Flow �
 ```bash
   "modelRegion": "us-west-2",
   "modelIds": [
+    "us.anthropic.claude-3-5-sonnet-20241022-v2:0",
+    "us.anthropic.claude-3-5-haiku-20241022-v1:0",
     "us.anthropic.claude-3-5-sonnet-20240620-v1:0",
     "us.anthropic.claude-3-opus-20240229-v1:0",
     "us.anthropic.claude-3-sonnet-20240229-v1:0",
@@ -778,7 +813,7 @@ context の `dashboard` に `true` を設定します。(デフォルトは `fal
 }
 ```
 
-変更後に `npm run cdk:deploy`　で再度デプロイして反映させます。context の `modelRegion` に指定されたリージョンに `GenerativeAiUseCasesDashboardStack` という名前の Stack がデプロイされます。出力された値はこの後の手順で利用します。
+変更後に `npm run cdk:deploy` で再度デプロイして反映させます。context の `modelRegion` に指定されたリージョンに `GenerativeAiUseCasesDashboardStack` という名前の Stack がデプロイされます。出力された値はこの後の手順で利用します。
 
 続いて、Amazon Bedrock のログの出力を設定します。[Amazon Bedrock の Settings](https://console.aws.amazon.com/bedrock/home#settings) を開き、Model invocation logging を有効化します。Select the logging destinations には CloudWatch Logs only を選択してください。(S3 にも出力したい場合、Both S3 and CloudWatch Logs を選択しても構いません。) また、Log group name には `npm run cdk:deploy` 時に出力された `GenerativeAiUseCasesDashboardStack.BedrockLogGroup` を指定してください。(例: `GenerativeAiUseCasesDashboardStack-LogGroupAAAAAAAA-BBBBBBBBBBBB`) Service role は任意の名前で新規に作成してください。なお、Model invocation logging の設定は、context で `modelRegion` として指定しているリージョンで行うことに留意してください。
 
@@ -812,6 +847,9 @@ cdk.json には以下の値を設定します。
 ```
 
 ## 別 AWS アカウントの Bedrock を利用したい場合
+
+> [!NOTE]
+> Agent 系のタスク (Agent, Prompt Flow, プロンプト最適化ツール) に関しては別 AWS アカウントの利用をサポートしていないため、実行時にエラーになる可能性があります。
 
 別 AWS アカウントの Bedrock を利用することができます。前提条件として、GenU の初回デプロイは完了済みとします。
 
