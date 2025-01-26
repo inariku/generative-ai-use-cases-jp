@@ -158,7 +158,6 @@ export class GenerativeAiUseCasesStack extends Stack {
       webAclId: props.webAclId,
       modelRegion: api.modelRegion,
       modelIds: api.modelIds,
-      multiModalModelIds: api.multiModalModelIds,
       imageGenerationModelIds: api.imageGenerationModelIds,
       endpointNames: api.endpointNames,
       samlAuthEnabled,
@@ -277,10 +276,6 @@ export class GenerativeAiUseCasesStack extends Stack {
       value: JSON.stringify(api.modelIds),
     });
 
-    new CfnOutput(this, 'MultiModalModelIds', {
-      value: JSON.stringify(api.multiModalModelIds),
-    });
-
     new CfnOutput(this, 'ImageGenerateModelIds', {
       value: JSON.stringify(api.imageGenerationModelIds),
     });
@@ -311,5 +306,8 @@ export class GenerativeAiUseCasesStack extends Stack {
 
     this.userPool = auth.userPool;
     this.userPoolClient = auth.client;
+
+    this.exportValue(this.userPool.userPoolId);
+    this.exportValue(this.userPoolClient.userPoolClientId);
   }
 }

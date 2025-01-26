@@ -180,6 +180,7 @@ npm run cdk:deploy
   - [Kendraのインデックスを自動で作成・削除するスケジュールを設定する](/docs/DEPLOY_OPTION.md#Kendraを自動でオン・オフするスケジュールを設定する)
 - [モニタリング用のダッシュボードの有効化](/docs/DEPLOY_OPTION.md#モニタリング用のダッシュボードの有効化)
 - [別 AWS アカウントの Bedrock を利用したい場合](/docs/DEPLOY_OPTION.md#別-AWS-アカウントの-Bedrock-を利用したい場合)
+- [同一アカウントに複数環境デプロイする場合](/docs/DEPLOY_OPTION.md#同一アカウントに複数環境デプロイする場合)
 
 ## その他
  - [アップデート方法](/docs/UPDATE.md)
@@ -189,10 +190,13 @@ npm run cdk:deploy
  - [ブラウザ拡張機能を利用する](/browser-extension/README.md)
 
 ## 料金試算
-[GenU をご利用いただく際の、構成と料金試算例](https://aws.amazon.com/jp/cdp/ai-chatapp/)を公開しております。  
+GenU をご利用いただく際の、構成と料金試算例を公開しております。
 この料金試算例は、Amazon Kendra を活用した RAG チャット機能を有効化する前提となっています。
 セキュリティ強化のための AWS WAF や、ファイルのアップロード機能、Knowledge Base を活用したオプション機能などは含まれていない点にご注意ください。
 従量課金制となっており、実際の料金はご利用内容により変動いたします。
+- [シンプル版 (RAG なし) 試算](https://aws.amazon.com/jp/cdp/ai-chatbot/)
+- [RAG (Amazon Kendra) あり試算](https://aws.amazon.com/jp/cdp/ai-chatapp/)
+- [RAG (Knowledge Base) あり試算](https://aws.amazon.com/jp/cdp/genai-chat-app/)
 
 ## お客様事例
 
@@ -206,6 +210,7 @@ npm run cdk:deploy
 | <a href="https://idealog.co.jp" target="_blank"><img src="./imgs/cases/idealog_logo.jpg"></a>|  **株式会社アイデアログ** <br/> *M従来の生成 AI ツールよりもさらに業務効率化ができていると感じます。入出力データをモデルの学習に使わない Amazon Bedrock を使っているので、セキュリティ面も安心です。* <br/> ・[事例の詳細を見る](./imgs/cases/idealog_case.png) <br/> ・[適用サービス](https://kaijosearch.com/)|
 | <a href="https://estyle.co.jp/" target="_blank"><img src="./imgs/cases/estyle_logo.png"></a>|  **株式会社エスタイル** <br/> *GenU を活用して短期間で生成 AI 環境を構築し、社内のナレッジシェアを促進することができました。* <br/> ・[事例の詳細を見る](./imgs/cases/estyle_case.png) |
 | <a href="https://meidensha.co.jp/" target="_blank"><img src="./imgs/cases/meidensha_logo.svg"></a>|  **株式会社明電舎** <br/> *Amazon Bedrock や Amazon Kendra など AWS のサービスを利用することで、生成 AI の利用環境を迅速かつセキュアに構築することができました。議事録の自動生成や社内情報の検索など、従業員の業務効率化に貢献しています。* <br/> ・[事例の詳細を見る](./imgs/cases/meidensha_case.png) |
+| <a href="https://www.st-grp.co.jp/" target="_blank"><img src="./imgs/cases/st-grp_logo.jpg"></a>|  **三協立山株式会社** <br/> *社内に埋もれていた情報が Amazon Kendra の活用で素早く探せるようになりました。GenU を参考にすることで求めていた議事録生成などの機能を迅速に提供できました。* <br/> ・[事例の詳細を見る](./imgs/cases/st-grp_case.png) |
 
 活用事例を掲載させて頂ける場合は、[Issue](https://github.com/aws-samples/generative-ai-use-cases-jp/issues)よりご連絡ください。
 

@@ -282,7 +282,7 @@ Knowledge Bases for Amazon Bedrock と連携したエージェントを手動で
 
 まず、[ナレッジベースの AWS コンソール画面](https://console.aws.amazon.com/bedrock/home?#/knowledge-bases) から[Knowledge Bases for Amazon Bedrock のドキュメント](https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/knowledge-base-create.html)を参考にナレッジベースを作成します。リージョンは後述する `agentRegion` と同じリージョンに作成してください。
 
-続いて、 [エージェントの AWS コンソール画面](https://console.aws.amazon.com/bedrock/home?#/agents) から手動で Agent を作成します。設定は基本的にデフォルトのままで、Agent のプロンプトは以下の例を参考にプロンプトを入力します。モデルはレスポンスが早いため `anthropic.claude-instant-v1` を推奨します。アクショングループは必要ないため設定せずに進み、ナレッジベースでは前のステップで作成したナレッジベースを登録し、プロンプトは以下の例を参考に入力します。
+続いて、 [エージェントの AWS コンソール画面](https://console.aws.amazon.com/bedrock/home?#/agents) から手動で Agent を作成します。設定は基本的にデフォルトのままで、Agent のプロンプトは以下の例を参考にプロンプトを入力します。アクショングループは必要ないため設定せずに進み、ナレッジベースでは前のステップで作成したナレッジベースを登録し、プロンプトは以下の例を参考に入力します。
 
 ```
 Agent プロンプト例: あなたは指示に応えるアシスタントです。 指示に応じて情報を検索し、その内容から適切に回答してください。情報に記載のないものについては回答しないでください。複数回検索することが可能です。
@@ -490,7 +490,8 @@ Prompt optimization のサポート状況は [こちら](https://docs.aws.amazon
 "stability.stable-diffusion-xl-v1",
 "stability.sd3-large-v1:0",
 "stability.stable-image-core-v1:0",
-"stability.stable-image-ultra-v1:0"
+"stability.stable-image-ultra-v1:0",
+"stability.sd3-5-large-v1:0"
 ```
 
 **指定したリージョンで指定したモデルが有効化されているかご確認ください。**
@@ -516,6 +517,7 @@ Prompt optimization のサポート状況は [こちら](https://docs.aws.amazon
   "imageGenerationModelIds": [
     "amazon.titan-image-generator-v2:0",
     "amazon.titan-image-generator-v1",
+    "amazon.nova-canvas-v1:0",
     "stability.stable-diffusion-xl-v1"
   ],
 ```
@@ -543,7 +545,8 @@ Prompt optimization のサポート状況は [こちら](https://docs.aws.amazon
     "stability.stable-diffusion-xl-v1",
     "stability.sd3-large-v1:0",
     "stability.stable-image-core-v1:0",
-    "stability.stable-image-ultra-v1:0"
+    "stability.stable-image-ultra-v1:0",
+    "stability.sd3-5-large-v1:0"
   ],
 ```
 ### cross-region inference が対応しているモデルで us(北部バージニアもしくはオレゴン) の Amazon Bedrock のモデルを利用する場合
@@ -573,7 +576,8 @@ Prompt optimization のサポート状況は [こちら](https://docs.aws.amazon
     "stability.stable-diffusion-xl-v1",
     "stability.sd3-large-v1:0",
     "stability.stable-image-core-v1:0",
-    "stability.stable-image-ultra-v1:0"
+    "stability.stable-image-ultra-v1:0",
+    "stability.sd3-5-large-v1:0"
   ],
 ```
 
@@ -918,3 +922,33 @@ cdk.json 設定例
 ```
 
 設定変更後に `npm run cdk:deploy` を実行して変更内容を反映させます。
+
+## 同一アカウントに複数環境デプロイする場合
+
+同一アカウントで複数環境をデプロイする場合、異なる名前のスタックでデプロイする必要があります。
+
+`cdk.json` の `env` を設定すると各スタックの Suffix として付与され別環境としてデプロイされます。
+
+cdk.json には以下の値を設定します。
+
+- `env` ... 環境名 (デフォルト: "" (空文字))
+
+**[packages/cdk/cdk.json](/packages/cdk/cdk.json) を編集**
+
+```json
+{
+  "context": {
+    "env": "スタック名に付与される Suffix"
+  }
+}
+```
+
+cdk.json 設定例
+
+```json
+{
+  "context": {
+    "env": "-dev"
+  }
+}
+```
