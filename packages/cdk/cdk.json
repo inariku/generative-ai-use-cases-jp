@@ -40,7 +40,6 @@
     "modelIds": [
       "us.anthropic.claude-3-5-sonnet-20241022-v2:0",
       "us.anthropic.claude-3-5-haiku-20241022-v1:0",
-<<<<<<< HEAD
       "us.meta.llama3-2-90b-instruct-v1:0",
       "us.amazon.nova-pro-v1:0",
       "us.amazon.nova-lite-v1:0",
@@ -55,15 +54,8 @@
       "stability.stable-diffusion-xl-v1",
       "stability.sd3-large-v1:0",
       "stability.stable-image-core-v1:0",
-      "stability.stable-image-ultra-v1:0"
-=======
-      "us.amazon.nova-pro-v1:0",
-      "us.amazon.nova-lite-v1:0",
-      "us.amazon.nova-micro-v1:0"
-    ],
-    "imageGenerationModelIds": [
-      "amazon.nova-canvas-v1:0"
->>>>>>> upstream/main
+      "stability.stable-image-ultra-v1:0",
+      "stability.sd3-5-large-v1:0"
     ],
     "endpointNames": [],
     "agentEnabled": false,
