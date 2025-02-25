@@ -73,7 +73,7 @@
     "hostedZoneId": null,
     "dashboard": true,
     "anonymousUsageTracking": true,
-    "guardrailEnabled" : false,
+    "guardrailEnabled": false,
     "crossAccountBedrockRoleArn": "",
     "useCaseBuilderEnabled": true,
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
